@@ -49,4 +49,5 @@ fact trans {
   always (empty or (some f : File | delete[f] or restore[f] or delete_permanent_from_trash[f] or delete_permanent_outside_trash[f]))
 }
 
-run example{}
+pred example {} // to ensure we can do higher bound instances
+run example for 10 File
