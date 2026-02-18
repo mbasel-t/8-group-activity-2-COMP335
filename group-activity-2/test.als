@@ -45,9 +45,15 @@ pred empty_trash {
   File' = File - Trash // effect on File
 }
 
+assert delete_all {
+  always ((Trash = File and empty) implies after always no File)
+}
+
+check delete_all
+
+
 fact trans {
   always (empty or (some f : File | delete[f] or restore[f] or delete_permanent_from_trash[f] or delete_permanent_outside_trash[f]))
 }
 
-pred example {} // to ensure we can do higher bound instances
-run example for 10 File
+run example {}
